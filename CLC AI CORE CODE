@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import argparse
+import urllib.request
+import urllib.error
+
+# Config directory and file paths
+CONFIG_DIR = os.path.expanduser("~/.config/ai-assistant")
+CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
+
+def load_config():
+    """Loads configuration keys and default models."""
+    config = {
+        "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
+        "ANTHROPIC_API_KEY": os.environ.get("ANTHROPIC_API_KEY", ""),
+        "GEMINI_API_KEY": os.environ.get("GEMINI_API_KEY", ""),
+        "default_model": "gpt-4o"
+    }
+    if os.path.exists(CONFIG_PATH):
+        try:
+            with open(CONFIG_PATH, "r") as f:
+                saved = json.load(f)
+                config.update(saved)
+        except Exception:
+            pass
+    return config
+
+def save_config(config):
+    """Saves API keys and choices locally."""
+    os.makedirs(CONFIG_DIR, exist_ok=True)
+    with open(CONFIG_PATH, "w") as f:
+        json.dump(config, f, indent=4)
+    print(f"[*] Configuration saved to {CONFIG_PATH}")
+
+def call_openai(api_key, model, system_prompt, user_prompt):
+    """Hits the OpenAI Chat Completions API."""
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+    }
+    return send_request(url, headers, payload, lambda r: r["choices"][0]["message"]["content"])
+
+def call_anthropic(api_key, model, system_prompt, user_prompt):
+    """Hits the Anthropic Messages API."""
+    url = "https://api.anthropic.com/v1/messages"
+    headers = {
+        "Content-Type": "application/json",
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01"
+    }
+    payload = {
+        "model": model,
+        "max_tokens": 4096,
+        "system": system_prompt,
+        "messages": [
+            {"role": "user", "content": user_prompt}
+        ]
+    }
+    return send_request(url, headers, payload, lambda r: r["content"][0]["text"])
+
+def call_gemini(api_key, model, system_prompt, user_prompt):
+    """Hits the Google Gemini API."""
+    # Append system instruction into query structure for Gemini
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "contents": [{
+            "parts": [{"text": f"{system_prompt}\n\nUser Input:\n{user_prompt}"}]
+        }]
+    }
+    return send_request(url, headers, payload, lambda r: r["candidates"][0]["content"]["parts"][0]["text"])
+
+def send_request(url, headers, payload, parser_fn):
+    """Utility wrapper for raw urllib JSON requests."""
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req) as response:
+            res_data = json.loads(response.read().decode("utf-8"))
+            return parser_fn(res_data)
+    except urllib.error.HTTPError as e:
+        error_msg = e.read().decode("utf-8")
+        try:
+            parsed_error = json.loads(error_msg)
+            return f"API Error ({e.code}): {json.dumps(parsed_error, indent=2)}"
+        except Exception:
+            return f"HTTP Error ({e.code}): {error_msg}"
+    except Exception as e:
+        return f"Network Error: {str(e)}"
+
+def main():
+    config = load_config()
+    
+    parser = argparse.ArgumentParser(description="Multi-Model Command-Line AI Assistant")
+    parser.add_argument("prompt", nargs="*", help="Direct prompt for the AI model")
+    parser.add_argument("-m", "--model", help="Select model to target: gpt-4o, claude-3-5-sonnet, gemini-1.5-pro, etc.")
+    parser.add_argument("-s", "--system", default="You are a helpful shell automation assistant. Be concise.", help="Override default system instruction")
+    parser.add_argument("--set-key", nargs=2, metavar=("SERVICE", "KEY"), help="Set API Key local configuration (e.g. --set-key OPENAI_API_KEY sk-...)")
+    parser.add_argument("--show-config", action="store_true", help="Display loaded configuration information")
+    
+    args = parser.parse_args()
+
+    # Handle API Key configuration helper
+    if args.set_key:
+        target_service, key_val = args.set_key
+        target_service = target_service.upper()
+        if target_service in ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "GEMINI_API_KEY", "DEFAULT_MODEL"]:
+            config[target_service] = key_val
+            save_config(config)
+            return
+        else:
+            print("[-] Unknown variable. Use OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY, or DEFAULT_MODEL.")
+            sys.exit(1)
+
+    if args.show_config:
+        print("=== Assistant Configuration ===")
+        print(f"Config path: {CONFIG_PATH}")
+        print(f"Default Model Selection: {config.get('default_model')}")
+        print(f"OpenAI Key Present: {bool(config.get('OPENAI_API_KEY'))}")
+        print(f"Anthropic Key Present: {bool(config.get('ANTHROPIC_API_KEY'))}")
+        print(f"Gemini Key Present: {bool(config.get('GEMINI_API_KEY'))}")
+        return
+
+    # Check for inputs
+    user_prompt = " ".join(args.prompt) if args.prompt else ""
+    
+    # Read from pipeline if stdin is not a TTY (pipe support)
+    if not sys.stdin.isatty():
+        piped_content = sys.stdin.read().strip()
+        if piped_content:
+            if user_prompt:
+                user_prompt = f"{user_prompt}\n\n[Context/Input Stream]:\n{piped_content}"
+            else:
+                user_prompt = piped_content
+
+    if not user_prompt:
+        parser.print_help()
+        sys.exit(0)
+
+    # Determine provider based on chosen or fallback model
+    chosen_model = args.model or config.get("default_model") or "gpt-4o"
+    
+    if "gpt" in chosen_model.lower():
+        api_key = config.get("OPENAI_API_KEY")
+        if not api_key:
+            print("[-] Error: OPENAI_API_KEY is not set. Use --set-key or export the environment variable.")
+            sys.exit(1)
+        result = call_openai(api_key, chosen_model, args.system, user_prompt)
+    elif "claude" in chosen_model.lower():
+        api_key = config.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            print("[-] Error: ANTHROPIC_API_KEY is not set. Use --set-key or export the environment variable.")
+            sys.exit(1)
+        result = call_anthropic(api_key, chosen_model, args.system, user_prompt)
+    elif "gemini" in chosen_model.lower():
+        api_key = config.get("GEMINI_API_KEY")
+        if not api_key:
+            print("[-] Error: GEMINI_API_KEY is not set. Use --set-key or export the environment variable.")
+            sys.exit(1)
+        result = call_gemini(api_key, chosen_model, args.system, user_prompt)
+    else:
+        print(f"[-] Unrecognized model pattern: '{chosen_model}'. defaulting to OpenAI request scheme.")
+        api_key = config.get("OPENAI_API_KEY")
+        if not api_key:
+            print("[-] Error: OPENAI_API_KEY is not set.")
+            sys.exit(1)
+        result = call_openai(api_key, chosen_model, args.system, user_prompt)
+
+    print(result)
+
+if __name__ == "__main__":
+    main()
