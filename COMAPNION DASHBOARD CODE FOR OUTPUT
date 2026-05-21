@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CLI Assistant Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white py-6 px-8 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold flex items-center gap-2">
+                    <span>⚡</span> AI Terminal Assistant Companion
+                </h1>
+                <p class="text-indigo-200 mt-1">Configure, automate, and orchestrate GPT, Claude, and Gemini from your M1 Mac Terminal</p>
+            </div>
+            <div class="bg-indigo-800 px-4 py-2 rounded-lg border border-indigo-700 text-sm">
+                🖥️ Target: <span class="font-bold text-white">Apple Silicon macOS (zsh)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Interactive Sidebar/Setup instructions -->
+        <div class="lg:col-span-4 space-y-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <span class="text-indigo-600">🛠️</span> Quick Installation
+                </h2>
+                <p class="text-slate-600 text-sm mb-4">Run these commands inside your local workspace directory containing the files generated on the right:</p>
+                
+                <div class="space-y-3">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Step 1: Set Executable Permissions</span>
+                        <div class="relative mt-1">
+                            <pre class="bg-slate-900 text-indigo-400 p-2 text-xs rounded code-block overflow-x-auto">chmod +x setup.sh</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Step 2: Install and Link Path</span>
+                        <div class="relative mt-1">
+                            <pre class="bg-slate-900 text-indigo-400 p-2 text-xs rounded code-block overflow-x-auto">./setup.sh</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Step 3: Reload Terminal Configurations</span>
+                        <div class="relative mt-1">
+                            <pre class="bg-slate-900 text-indigo-400 p-2 text-xs rounded code-block overflow-x-auto">source ~/.zshrc</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Helper -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <span class="text-indigo-600">🔑</span> Set API Credentials
+                </h2>
+                <p class="text-slate-600 text-sm mb-4">Choose a service provider to instantly generate the configuration command to paste into your terminal:</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Select Provider</label>
+                        <select id="key-provider" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" onchange="generateConfigCmd()">
+                            <option value="OPENAI_API_KEY">OpenAI (GPT-4o, etc.)</option>
+                            <option value="ANTHROPIC_API_KEY">Anthropic (Claude-3.5-Sonnet, etc.)</option>
+                            <option value="GEMINI_API_KEY">Google (Gemini-1.5-Pro, etc.)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Your Secret API Key</label>
+                        <input id="key-val" type="text" placeholder="sk-..." class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" oninput="generateConfigCmd()">
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Run this command:</span>
+                        <div class="relative mt-1">
+                            <pre id="config-cmd" class="bg-slate-900 text-green-400 p-2 text-xs rounded code-block whitespace-pre-wrap">ai --set-key OPENAI_API_KEY [paste_key_here]</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLI Automation Task Builder -->
+        <div class="lg:col-span-8 space-y-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-2">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">🚀 Task & Prompt Pipe Designer</h2>
+                        <p class="text-slate-500 text-sm">Design automated task pipelines that mix file systems with model routing.</p>
+                    </div>
+                    <div class="bg-green-100 text-green-800 px-3 py-1 rounded text-xs font-bold self-start md:self-auto">Zero-Dep Design</div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Select Preset Automation</label>
+                        <select id="preset-select" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" onchange="applyPreset()">
+                            <option value="summarize">📄 File Summary Pipeline</option>
+                            <option value="refactor">💻 Code Audit & Refactor</option>
+                            <option value="commit">📦 Git Auto-Commit Generation</option>
+                            <option value="json_extract">📊 Text-to-JSON Data Extraction</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Target Model Route</label>
+                        <select id="model-select" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" onchange="updateAutomationCommand()">
+                            <option value="gpt-4o">OpenAI GPT-4o (Default)</option>
+                            <option value="claude-3-5-sonnet-20241022">Anthropic Claude 3.5 Sonnet</option>
+                            <option value="gemini-1.5-pro">Google Gemini 1.5 Pro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Terminal Source Data / File Name Target</label>
+                        <input id="input-file" type="text" value="project_specs.md" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" oninput="updateAutomationCommand()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Automation Task Instructions</label>
+                        <textarea id="task-prompt" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded p-2 text-sm focus:outline-indigo-600" oninput="updateAutomationCommand()">Read the context from this file. Extract all key features and list action items as checkboxes.</textarea>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-slate-900 text-slate-100 rounded-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Execute in Terminal</span>
+                        <button onclick="copyCommand()" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1 px-2 rounded transition">Copy Command</button>
+                    </div>
+                    <code id="final-cli-cmd" class="text-sm font-mono text-green-400 block whitespace-pre-wrap overflow-x-auto">cat project_specs.md | ai -m gpt-4o "Read the context from this file. Extract all key features and list action items as checkboxes."</code>
+                </div>
+            </div>
+
+            <!-- Architecture & Pipe Mechanics -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-800 mb-3">🛠️ Understanding System Pipelines</h3>
+                <p class="text-slate-600 text-sm mb-4">Because the assistant handles UNIX-style standard pipes seamlessly, you can link local command line processes straight to the AI:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-sm">
+                        <span class="font-bold text-indigo-800 block mb-1">1. Read Context</span>
+                        Using commands like <code class="text-xs bg-indigo-100 px-1 text-slate-800">cat</code> or <code class="text-xs bg-indigo-100 px-1 text-slate-800">git diff</code> pulls raw files or system outputs.
+                    </div>
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-sm">
+                        <span class="font-bold text-indigo-800 block mb-1">2. Target Any Model</span>
+                        Use the flag <code class="text-xs bg-indigo-100 px-1 text-slate-800">-m</code> to instantly direct instructions to GPT, Claude, or Gemini.
+                    </div>
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-sm">
+                        <span class="font-bold text-indigo-800 block mb-1">3. Write to Files</span>
+                        Append <code class="text-xs bg-indigo-100 px-1 text-slate-800">> output.json</code> to redirect results straight to a file system.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-4 text-center text-xs mt-auto">
+        Powering terminal workflows smoothly without heavy SDK dependencies. Designed for developer efficiency.
+    </footer>
+
+    <script>
+        const presets = {
+            summarize: {
+                file: "notes.txt",
+                prompt: "Summarize this file content in 3 concise bullet points. Provide action items clearly."
+            },
+            refactor: {
+                file: "script.py",
+                prompt: "Review this file. Spot potential memory leaks, optimize time complexity, and return only the clean code block."
+            },
+            commit: {
+                file: "git diff",
+                prompt: "Based on the changes below, generate an elegant, conventional git commit message."
+            },
+            json_extract: {
+                file: "raw_data.csv",
+                prompt: "Parse this input and output the values into a beautifully structured, standard JSON list."
+            }
+        };
+
+        function generateConfigCmd() {
+            const provider = document.getElementById("key-provider").value;
+            const key = document.getElementById("key-val").value || "[paste_key_here]";
+            document.getElementById("config-cmd").textContent = `ai --set-key ${provider} ${key}`;
+        }
+
+        function applyPreset() {
+            const presetVal = document.getElementById("preset-select").value;
+            const selected = presets[presetVal];
+            if (selected) {
+                document.getElementById("input-file").value = selected.file;
+                document.getElementById("task-prompt").value = selected.prompt;
+                updateAutomationCommand();
+            }
+        }
+
+        function updateAutomationCommand() {
+            const file = document.getElementById("input-file").value;
+            const model = document.getElementById("model-select").value;
+            const prompt = document.getElementById("task-prompt").value;
+
+            let sourcePart = `cat ${file}`;
+            if (file === "git diff") {
+                sourcePart = "git diff";
+            }
+
+            const command = `${sourcePart} | ai -m ${model} "${prompt}"`;
+            document.getElementById("final-cli-cmd").textContent = command;
+        }
+
+        function copyCommand() {
+            const textToCopy = document.getElementById("final-cli-cmd").textContent;
+            
+            // Fallback clipboard logic to ensure execution in isolated canvas containers
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        }
+
+        // Initialize commands
+        generateConfigCmd();
+        updateAutomationCommand();
+    </script>
+</body>
+</html>
