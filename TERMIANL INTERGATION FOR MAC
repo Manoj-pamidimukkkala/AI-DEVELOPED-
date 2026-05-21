@@ -1,0 +1,46 @@
+#!/bin/zsh
+
+# Core setup script to integrate the Python tool into the zsh terminal environment on macOS (M1 compatibility checked)
+INSTALL_DIR="$HOME/.local/bin"
+SCRIPT_PATH="$INSTALL_DIR/ai"
+
+echo "[*] Creating user local bin directory if it doesn't exist..."
+mkdir -p "$INSTALL_DIR"
+
+echo "[*] Copying python source script to $SCRIPT_PATH..."
+cp ai_assistant.py "$SCRIPT_PATH"
+chmod +x "$SCRIPT_PATH"
+
+# Detect SHELL profile to apply alias
+SHELL_PROFILE="$HOME/.zshrc"
+
+echo "[*] Adding binary path to $SHELL_PROFILE..."
+if ! grep -q "export PATH=\"\$HOME/.local/bin:\$PATH\"" "$SHELL_PROFILE"; then
+    echo '\n# AI Assistant path' >> "$SHELL_PROFILE"
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
+    echo "[+] Added path configuration to $SHELL_PROFILE"
+else
+    echo "[*] Path configuration already present."
+fi
+
+# Set up helper alias for fast executions
+if ! grep -q "alias ai=" "$SHELL_PROFILE"; then
+    echo "alias ai='$SCRIPT_PATH'" >> "$SHELL_PROFILE"
+    echo "[+] Added 'ai' shortcut alias to $SHELL_PROFILE"
+fi
+
+echo ""
+echo "=========================================================="
+echo "🎉 Setup complete! To activate immediately, run:"
+echo "   source $SHELL_PROFILE"
+echo ""
+echo "You can configure your keys with command pipelines like:"
+echo "   ai --set-key OPENAI_API_KEY your-key-here"
+echo "   ai --set-key ANTHROPIC_API_KEY your-key-here"
+echo "   ai --set-key GEMINI_API_KEY your-key-here"
+echo ""
+echo "Usage Examples:"
+echo '  - Direct Query:  ai "Tell me how to write a loop in Zsh"'
+echo '  - Piping Input:  cat package.json | ai "explain what this file is"'
+echo '  - Specific Model: ai -m claude-3-5-sonnet "Refactor this function"'
+echo "=========================================================="
