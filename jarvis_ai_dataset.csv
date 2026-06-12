@@ -1,0 +1,301 @@
+input,output,intent
+what is your name sir,I am your Jarvis-like AI assistant.,identity
+search ai news,Searching the web for you...,search
+help me sir,"I can help with commands, search, and system tasks.",help
+what is the weather now,Checking weather information...,weather
+exit,Goodbye!,exit
+who are you,I am your Jarvis-like AI assistant.,identity
+what is the weather now,Checking weather information...,weather
+launch browser sir,Executing open command...,command_open
+weather report,Checking weather information...,weather
+tell me the time,Fetching current time...,time
+hey sir,Hello! I am your AI assistant.,greeting
+stop,Goodbye!,exit
+what can you do,"I can help with commands, search, and system tasks.",help
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+exit,Goodbye!,exit
+what are your abilities,"I can assist with AI tasks, commands, and information retrieval.",capability
+hello there now,Hello! I am your AI assistant.,greeting
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+is it raining,Checking weather information...,weather
+are you fine now,I'm here and ready to help!,smalltalk
+launch browser,Executing open command...,command_open
+good morning,Hello! I am your AI assistant.,greeting
+search python,Searching the web for you...,search
+start chrome,Executing open command...,command_open
+stop please,Goodbye!,exit
+list your features,"I can assist with AI tasks, commands, and information retrieval.",capability
+list your features sir,"I can assist with AI tasks, commands, and information retrieval.",capability
+search python now,Searching the web for you...,search
+i need help sir,"I can help with commands, search, and system tasks.",help
+open youtube please,Executing open command...,command_open
+stop sir,Goodbye!,exit
+weather today sir,Checking weather information...,weather
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+good afternoon please,Hello! I am your AI assistant.,greeting
+search python,Searching the web for you...,search
+are you fine,I'm here and ready to help!,smalltalk
+current time sir,Fetching current time...,time
+what time is it,Fetching current time...,time
+what can you do sir,"I can help with commands, search, and system tasks.",help
+is it raining sir,Checking weather information...,weather
+how do you feel now,I'm here and ready to help!,smalltalk
+stop,Goodbye!,exit
+i need help please,"I can help with commands, search, and system tasks.",help
+what is your name,I am your Jarvis-like AI assistant.,identity
+who are you sir,I am your Jarvis-like AI assistant.,identity
+assist me now,"I can help with commands, search, and system tasks.",help
+are you jarvis please,I am your Jarvis-like AI assistant.,identity
+how do you feel now,I'm here and ready to help!,smalltalk
+search data science jobs,Searching the web for you...,search
+hi sir,Hello! I am your AI assistant.,greeting
+is it raining,Checking weather information...,weather
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+quit please,Goodbye!,exit
+good evening now,Hello! I am your AI assistant.,greeting
+i need help,"I can help with commands, search, and system tasks.",help
+search data science jobs now,Searching the web for you...,search
+open youtube,Executing open command...,command_open
+i need help,"I can help with commands, search, and system tasks.",help
+what is the weather now,Checking weather information...,weather
+how can you help me,"I can assist with AI tasks, commands, and information retrieval.",capability
+tell me your name,I am your Jarvis-like AI assistant.,identity
+search ai news,Searching the web for you...,search
+open gmail,Executing open command...,command_open
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+who are you,I am your Jarvis-like AI assistant.,identity
+tell me the time,Fetching current time...,time
+search data science jobs,Searching the web for you...,search
+how do you feel,I'm here and ready to help!,smalltalk
+weather today sir,Checking weather information...,weather
+find github repos sir,Searching the web for you...,search
+how can you help me now,"I can assist with AI tasks, commands, and information retrieval.",capability
+what time is it,Fetching current time...,time
+open google,Executing open command...,command_open
+good morning now,Hello! I am your AI assistant.,greeting
+open google,Executing open command...,command_open
+good morning,Hello! I am your AI assistant.,greeting
+good afternoon,Hello! I am your AI assistant.,greeting
+weather today,Checking weather information...,weather
+what time is it now,Fetching current time...,time
+i need help now,"I can help with commands, search, and system tasks.",help
+what time is it,Fetching current time...,time
+current time,Fetching current time...,time
+what is your name sir,I am your Jarvis-like AI assistant.,identity
+stop please,Goodbye!,exit
+bye,Goodbye!,exit
+hi,Hello! I am your AI assistant.,greeting
+see you,Goodbye!,exit
+who are you,I am your Jarvis-like AI assistant.,identity
+open gmail please,Executing open command...,command_open
+assist me,"I can help with commands, search, and system tasks.",help
+find github repos,Searching the web for you...,search
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+what is the weather,Checking weather information...,weather
+what is the weather,Checking weather information...,weather
+open youtube please,Executing open command...,command_open
+current time,Fetching current time...,time
+exit,Goodbye!,exit
+exit please,Goodbye!,exit
+find github repos,Searching the web for you...,search
+see you sir,Goodbye!,exit
+weather report,Checking weather information...,weather
+open github,Executing open command...,command_open
+hello sir,Hello! I am your AI assistant.,greeting
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+how do you feel now,I'm here and ready to help!,smalltalk
+weather today,Checking weather information...,weather
+what is the weather,Checking weather information...,weather
+help me now,"I can help with commands, search, and system tasks.",help
+who are you please,I am your Jarvis-like AI assistant.,identity
+who are you now,I am your Jarvis-like AI assistant.,identity
+how are you now,I'm here and ready to help!,smalltalk
+are you jarvis sir,I am your Jarvis-like AI assistant.,identity
+are you fine,I'm here and ready to help!,smalltalk
+launch browser sir,Executing open command...,command_open
+list your features,"I can assist with AI tasks, commands, and information retrieval.",capability
+quit sir,Goodbye!,exit
+find github repos,Searching the web for you...,search
+what is your name please,I am your Jarvis-like AI assistant.,identity
+how are you,I'm here and ready to help!,smalltalk
+weather today now,Checking weather information...,weather
+search ai news,Searching the web for you...,search
+who are you,I am your Jarvis-like AI assistant.,identity
+search ai news please,Searching the web for you...,search
+is it raining now,Checking weather information...,weather
+what is the weather sir,Checking weather information...,weather
+is it raining sir,Checking weather information...,weather
+who are you,I am your Jarvis-like AI assistant.,identity
+what is your name sir,I am your Jarvis-like AI assistant.,identity
+weather today,Checking weather information...,weather
+search data science jobs,Searching the web for you...,search
+list your features sir,"I can assist with AI tasks, commands, and information retrieval.",capability
+search data science jobs please,Searching the web for you...,search
+search python,Searching the web for you...,search
+stop,Goodbye!,exit
+good afternoon,Hello! I am your AI assistant.,greeting
+show me help,"I can help with commands, search, and system tasks.",help
+tell me the time sir,Fetching current time...,time
+goodbye,Goodbye!,exit
+what is your name sir,I am your Jarvis-like AI assistant.,identity
+i need help,"I can help with commands, search, and system tasks.",help
+list your features please,"I can assist with AI tasks, commands, and information retrieval.",capability
+help me,"I can help with commands, search, and system tasks.",help
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+launch browser,Executing open command...,command_open
+tell me your name,I am your Jarvis-like AI assistant.,identity
+weather report now,Checking weather information...,weather
+what can you do,"I can help with commands, search, and system tasks.",help
+what can you do please,"I can help with commands, search, and system tasks.",help
+hey sir,Hello! I am your AI assistant.,greeting
+how can you help me,"I can assist with AI tasks, commands, and information retrieval.",capability
+open github,Executing open command...,command_open
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+hello there,Hello! I am your AI assistant.,greeting
+start chrome please,Executing open command...,command_open
+what are your abilities,"I can assist with AI tasks, commands, and information retrieval.",capability
+open youtube,Executing open command...,command_open
+open chatgpt,Executing open command...,command_open
+search python,Searching the web for you...,search
+look up machine learning sir,Searching the web for you...,search
+weather report sir,Checking weather information...,weather
+is it raining,Checking weather information...,weather
+tell me your name,I am your Jarvis-like AI assistant.,identity
+are you fine,I'm here and ready to help!,smalltalk
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+how can you help me now,"I can assist with AI tasks, commands, and information retrieval.",capability
+what is the weather please,Checking weather information...,weather
+what's up,I'm here and ready to help!,smalltalk
+hi there,Hello! I am your AI assistant.,greeting
+weather today,Checking weather information...,weather
+exit sir,Goodbye!,exit
+what are your abilities sir,"I can assist with AI tasks, commands, and information retrieval.",capability
+tell me your name now,I am your Jarvis-like AI assistant.,identity
+find github repos,Searching the web for you...,search
+see you,Goodbye!,exit
+weather today,Checking weather information...,weather
+see you please,Goodbye!,exit
+i need help now,"I can help with commands, search, and system tasks.",help
+find github repos now,Searching the web for you...,search
+good evening,Hello! I am your AI assistant.,greeting
+open chatgpt,Executing open command...,command_open
+are you fine please,I'm here and ready to help!,smalltalk
+current time sir,Fetching current time...,time
+open gmail please,Executing open command...,command_open
+help me,"I can help with commands, search, and system tasks.",help
+is it raining,Checking weather information...,weather
+launch browser,Executing open command...,command_open
+start chrome,Executing open command...,command_open
+help me,"I can help with commands, search, and system tasks.",help
+open chatgpt now,Executing open command...,command_open
+are you jarvis please,I am your Jarvis-like AI assistant.,identity
+what's up sir,I'm here and ready to help!,smalltalk
+bye please,Goodbye!,exit
+open youtube sir,Executing open command...,command_open
+hi,Hello! I am your AI assistant.,greeting
+quit,Goodbye!,exit
+weather report,Checking weather information...,weather
+weather today,Checking weather information...,weather
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+tell me the time now,Fetching current time...,time
+is it raining,Checking weather information...,weather
+tell me the time,Fetching current time...,time
+weather report,Checking weather information...,weather
+weather report,Checking weather information...,weather
+current time,Fetching current time...,time
+start chrome sir,Executing open command...,command_open
+search data science jobs please,Searching the web for you...,search
+open github please,Executing open command...,command_open
+tell me your name,I am your Jarvis-like AI assistant.,identity
+look up machine learning,Searching the web for you...,search
+what is the weather,Checking weather information...,weather
+what can you do please,"I can help with commands, search, and system tasks.",help
+what can you do,"I can help with commands, search, and system tasks.",help
+bye,Goodbye!,exit
+weather report please,Checking weather information...,weather
+good morning,Hello! I am your AI assistant.,greeting
+bye,Goodbye!,exit
+how are you,I'm here and ready to help!,smalltalk
+how do you feel please,I'm here and ready to help!,smalltalk
+good afternoon,Hello! I am your AI assistant.,greeting
+bye now,Goodbye!,exit
+weather today please,Checking weather information...,weather
+open github please,Executing open command...,command_open
+what time is it please,Fetching current time...,time
+how can you help me sir,"I can assist with AI tasks, commands, and information retrieval.",capability
+assist me,"I can help with commands, search, and system tasks.",help
+how are you please,I'm here and ready to help!,smalltalk
+how are you,I'm here and ready to help!,smalltalk
+quit,Goodbye!,exit
+what time is it,Fetching current time...,time
+find github repos,Searching the web for you...,search
+open chatgpt,Executing open command...,command_open
+how can you help me,"I can assist with AI tasks, commands, and information retrieval.",capability
+stop,Goodbye!,exit
+are you jarvis,I am your Jarvis-like AI assistant.,identity
+what is the weather,Checking weather information...,weather
+launch browser,Executing open command...,command_open
+hello,Hello! I am your AI assistant.,greeting
+start chrome,Executing open command...,command_open
+what's up,I'm here and ready to help!,smalltalk
+assist me sir,"I can help with commands, search, and system tasks.",help
+who are you please,I am your Jarvis-like AI assistant.,identity
+look up machine learning,Searching the web for you...,search
+how are you,I'm here and ready to help!,smalltalk
+show me help,"I can help with commands, search, and system tasks.",help
+how are you,I'm here and ready to help!,smalltalk
+how do you feel please,I'm here and ready to help!,smalltalk
+open google now,Executing open command...,command_open
+open google sir,Executing open command...,command_open
+search data science jobs,Searching the web for you...,search
+what is your name,I am your Jarvis-like AI assistant.,identity
+weather report sir,Checking weather information...,weather
+what can you do now,"I can assist with AI tasks, commands, and information retrieval.",capability
+what can you do,"I can assist with AI tasks, commands, and information retrieval.",capability
+bye,Goodbye!,exit
+stop sir,Goodbye!,exit
+tell me the time,Fetching current time...,time
+quit sir,Goodbye!,exit
+is it raining now,Checking weather information...,weather
+weather report please,Checking weather information...,weather
+see you now,Goodbye!,exit
+look up machine learning,Searching the web for you...,search
+start chrome,Executing open command...,command_open
+find github repos,Searching the web for you...,search
+tell me the time now,Fetching current time...,time
+stop,Goodbye!,exit
+current time,Fetching current time...,time
+what time is it,Fetching current time...,time
+look up machine learning,Searching the web for you...,search
+are you fine now,I'm here and ready to help!,smalltalk
+good morning,Hello! I am your AI assistant.,greeting
+launch browser please,Executing open command...,command_open
+tell me the time,Fetching current time...,time
+launch browser please,Executing open command...,command_open
+current time,Fetching current time...,time
+hi,Hello! I am your AI assistant.,greeting
+open chatgpt sir,Executing open command...,command_open
+open github sir,Executing open command...,command_open
+are you fine please,I'm here and ready to help!,smalltalk
+is it raining please,Checking weather information...,weather
+is it raining,Checking weather information...,weather
+current time,Fetching current time...,time
+search ai news,Searching the web for you...,search
+open github,Executing open command...,command_open
+weather today,Checking weather information...,weather
+launch browser please,Executing open command...,command_open
+search data science jobs,Searching the web for you...,search
+is it raining,Checking weather information...,weather
+open github,Executing open command...,command_open
+list your features,"I can assist with AI tasks, commands, and information retrieval.",capability
+hey,Hello! I am your AI assistant.,greeting
+hello now,Hello! I am your AI assistant.,greeting
+search ai news sir,Searching the web for you...,search
+what time is it,Fetching current time...,time
+good evening please,Hello! I am your AI assistant.,greeting
+current time,Fetching current time...,time
+help me,"I can help with commands, search, and system tasks.",help
+what time is it,Fetching current time...,time
+are you jarvis please,I am your Jarvis-like AI assistant.,identity
+what is your name,I am your Jarvis-like AI assistant.,identity
+i need help,"I can help with commands, search, and system tasks.",help
